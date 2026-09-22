@@ -12,6 +12,12 @@
       margin-bottom: 3rem;
     }
     .outreach-cta { color: var(--forest); font-style: italic; }
+    .outreach-text a {
+      color: var(--forest);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .outreach-text a:hover { color: var(--navy); }
 
     /* rows: large boxes with a light purple background */
     .outreach-row {
@@ -127,12 +133,11 @@
           I translated Dearborn Observatory's brochure series into Spanish,
           so visitors from Chicago's Hispanic community can explore the night sky and careers in astronomy
           without a language barrier.
-
-          <!-- https://ciera.northwestern.edu/programs/pathfinder-brochures/ -->
+          <a href="https://ciera.northwestern.edu/programs/pathfinder-brochures/" target="_blank" rel="noopener noreferrer">You can find them here!</a>
         </p>
       </div>
       <figure class="outreach-photo">
-        <img src="outreach/dearborn.jpg" alt="Dearborn Observatory"
+        <img src="outreach/spanish.png" alt="Spanish Astronomy Brochures"
              onerror="this.closest('.outreach-photo').classList.add('empty')"/>
       </figure>
     </article>
