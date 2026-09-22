@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CV · Elena González Prieto</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .page-body { margin:0 auto; }
+    .cv-center {
+      display:flex; flex-direction:column; align-items:center;
+      gap:2rem; margin-top:4rem; text-align:center;
+    }
+    .cv-note {
+      font-size:1.45rem; line-height:1.6;
+      color:var(--text-soft); font-weight:300; max-width:600px;
+    }
+    .cv-note a { color:var(--forest-light); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">EGP</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown">
+      <a href="research.html">Research</a>
+      <div class="dropdown-menu">
+        <a href="research-stellar.html">Stellar Dynamics</a>
+        <a href="research-mbh.html">Massive Black Holes</a>
+        <a href="research-ml.html">Machine Learning</a>
+      </div>
+    </li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="cv.html" class="active">CV</a></li>
+    <li><a href="outreach.html">Outreach</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-body">
+    <div class="cv-center">
+      <p class="cv-note">
+        My CV is available as a PDF below.<br/>
+        Last updated September 2026.
+      </p>
+      <!-- Update href="cv.pdf" to point to your actual CV file -->
+      <a class="cv-download-btn" href="cv.pdf" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download CV (PDF)
+      </a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

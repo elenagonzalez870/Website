@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stellar Dynamics · Elena González Prieto</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .page-header h1  { font-size: 3.4rem; }
+
+    .sibling-nav { display: flex; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
+    .sibling-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      border: 1px solid var(--forest-border); border-radius: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--forest); text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .sibling-btn:hover { background: var(--forest-pale); box-shadow: 0 0 10px var(--forest-glow); }
+    .sibling-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    .topic-section { margin-bottom: 2.8rem; }
+    .topic-section h2 {
+      font-family: 'Times New Roman', serif;
+      font-size: 1.9rem; font-weight: 400; color: var(--forest);
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--forest-border);
+    }
+    .topic-section p {
+      font-size: 1.22rem; line-height: 1.9;
+      color: var(--text-soft); font-weight: 300; margin-bottom: 1rem;
+    }
+    .topic-section p:last-child { margin-bottom: 0; }
+    .paper-ref {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-top: 0.85rem;
+    }
+    .paper-ref a { color: var(--forest); text-decoration: none; }
+    .paper-ref a:hover { text-decoration: underline; }
+    .topic-section a {
+      color: var(--forest);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .topic-section a:hover { color: var(--navy); }
+
+    .topic-with-fig {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem;
+      align-items: start;
+      margin-bottom: 2.8rem;
+    }
+    .topic-with-fig .topic-section { margin-bottom: 0; }
+    /* sections without a figure span the full page width */
+    .topic-with-fig:not(:has(.topic-fig)) { grid-template-columns: 1fr; }
+    .topic-fig { margin: 0; position: sticky; top: 80px; }
+    .topic-fig img {
+      width: 100%; height: auto; display: block;
+      border: 1px solid var(--forest-border);
+      border-radius: 4px; background: var(--white);
+    }
+    .topic-fig.placeholder {
+      aspect-ratio: 4 / 3;
+      border: 1px dashed var(--forest-border);
+      border-radius: 4px;
+      background: var(--forest-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Times New Roman', serif;
+      font-style: italic; font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .topic-fig figcaption {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-top: 0.55rem; line-height: 1.5;
+    }
+    .topic-fig a { color: var(--forest-light); text-decoration: none; }
+    .topic-fig a:hover { text-decoration: underline; }
+
+    @media (max-width: 820px) {
+      .topic-with-fig { grid-template-columns: 1fr; gap: 1.25rem; }
+      .topic-fig { position: static; max-width: 420px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">EGP</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown">
+      <a href="research.html" class="active">Research</a>
+      <div class="dropdown-menu">
+        <a href="research-stellar.html" class="active">Stellar Dynamics</a>
+        <a href="research-mbh.html">Massive Black Holes</a>
+        <a href="research-ml.html">Machine Learning</a>
+      </div>
+    </li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="outreach.html">Outreach</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-header">
+    <h1>Stellar Dynamics</h1>
+  </div>
+
+  <div class="page-body">
+
+    <div class="topic-with-fig">
+      <div class="topic-section">
+        <h2>Dense Stellar Environments</h2>
+        <p>
+          Dense stellar systems, such as young massive clusters, globular clusters, and
+          nuclear star clusters, are natural laboratories for stellar collisions, tidal
+          disruption events, and mergers between compact objects. In these environments,
+          dynamical encounters can result in exotic populations including X-ray binaries, 
+          radio pulsars, and black holes that would not form in isolated single-star evolution.
+
+        </p>
+        <p>
+          To study the dynamical evolution of star clusters, I use the <strong>Cluster Monte Carlo code (CMC)</strong>,
+          a parallelized Hénon-type Monte Carlo <em>N</em>-body code. As one of the lead developers of CMC, I have incorporated 
+          the loss-cone physics needed to accurately model the presence of a central massive black hole.
+        </p>
+      </div>
+    </div>
+
+    <div class="topic-with-fig">
+      <div class="topic-section">
+        <h2>IMBH Formation via Massive Binaries</h2>
+        <p>
+          Isolated single-star evolution predicts an “upper mass gap” in the black
+          hole spectrum from roughly 40 to 120&nbsp;M<sub>⊙</sub>, set by (pulsational)
+          pair-instability supernovae. One way to populate that gap is the collapse of
+          a very massive star (VMS) built through repeated collisions in a dense
+          cluster.
+        </p>
+        <p>
+          In
+          <a href="https://doi.org/10.3847/2041-8213/abdf5b" target="_blank">González et&nbsp;al. (2021)</a>
+          we explored the role of the primordial binary fraction of massive stars in this 
+          formation pathway. We found that for clusters with parameters typical of Milky Way globular clusters and binary fractions 
+          consistent with field massive stars, massive binaries drive binary-mediated encounters, leading to the formation 
+          of intermediate-mass black holes (≳120&nbsp;M<sub>⊙</sub>). 
+          The figure on the right shows a typical collision tree leading to an IMBH.
+        </p>
+      </div>
+      <figure class="topic-fig">
+        <img src="research/Dyn_tree.png" alt="Collision tree leading to IMBH formation"/>
+        <figcaption>Example collision tree leading to IMBH formation.</figcaption>
+      </figure>
+    </div>
+
+    <div class="topic-with-fig">
+      <div class="topic-section">
+        <h2>IMBH Retention in Young Clusters</h2>
+        <p>
+          Forming an IMBH is only half the story — retaining it in the cluster is the other half!
+          In
+          <a href="https://doi.org/10.3847/1538-4357/ac9b0f" target="_blank">González Prieto et&nbsp;al. (2022)</a>
+          we followed these massive black holes over longer timescales and asked
+          whether they remain in present-day clusters or escape as gravitational-wave
+          sources.
+        </p>
+        <p>
+          In our models, all IMBHs were ejected within the first ∼500&nbsp;Myr, either by
+          gravitational-wave recoil after a black hole merger or by dynamical kicks
+          from few-body scatterings. Some of the IMBHs were ejected in a binary with a BH, 
+          with short enough inspiral timescales that they might become LIGO sources.
+          The figure on the right shows the mass of the IMBH and the mass ratio with its companion, 
+          colored by the inspiral timescale. Binaries above the dashed black line are IMBH pairs, while 
+          those above the blue dashed line had upper-mass-gap companions.
+        </p>
+      </div>
+      <figure class="topic-fig">
+        <img src="research/imbh_q.png" alt="Mass ratio versus escaping IMBH mass"/>
+        <figcaption>
+          Mass ratio <em>(q)</em> versus escaping IMBH mass, colored by inspiral time.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="topic-with-fig">
+      <div class="topic-section">
+        <h2>IMBH Progenitors Across Cluster Parameter Space</h2>
+        <p>
+          In
+          <a href="https://doi.org/10.3847/1538-4357/ad43d6" target="_blank">González Prieto et&nbsp;al. (2024)</a>
+          we mapped how cluster initial conditions control VMS growth — and therefore
+          IMBH seed mass — with a large grid of CMC models. We vary the number of
+          stars, cluster density, stellar initial mass function (IMF), and primordial
+          binary fraction.
+        </p>
+        <p>
+          Denser clusters born with top-heavy IMFs enter strong collisional regimes
+          and form VMSs that easily exceed 1000&nbsp;M<sub>⊙</sub>. The upper panel of the
+          figure on the right shows the evolution of the Lagrange radii (from top to bottom enclosing 99%, 50%, 10%, and
+          1% of the cluster's total mass) as a function of time for different IMF slopes. The top-heavy
+          model (in black) experiences a core collapse before the main-sequence lifetime for the
+          most massive stars in the cluster (shown as a vertical black dashed line), allowing the stars to collide before 
+          significant mass loss from stellar evolution heats up the core of the cluster. The bottom panel shows the different 
+          collisional trees that lead to the formation of a VMS. In the paper we also derive a
+          fitting formula for the typical VMS mass as a function of cluster
+          properties, which can be used as seeding prescriptions in large-scale simulations. 
+        </p>
+      </div>
+      <figure class="topic-fig">
+        <img src="research/Lagrange_radii.png" alt="Lagrange radii evolution for different IMFs"/>
+        <figcaption>
+          <em>Top:</em> Lagrange radii and VMS growth for different IMF slopes.
+          <em>Bottom:</em> Different collisional trees that lead to the formation of a VMS.
+        </figcaption>
+      </figure>
+    </div>
+
+    
+
+    <div class="sibling-nav">
+      <a class="sibling-btn" href="research.html">
+        <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Research Overview
+      </a>
+      <a class="sibling-btn" href="research-mbh.html">
+        Massive Black Holes
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a class="sibling-btn" href="research-ml.html">
+        Machine Learning
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

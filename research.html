@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Research · Elena González Prieto</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .page-header h1 { font-size: 3.4rem; }
+    .prose          { font-size: 1.4rem; }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .research-card {
+      border: 1px solid var(--forest-border);
+      border-radius: 10px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      min-height: 380px;
+      transition: box-shadow 0.3s, transform 0.25s;
+    }
+
+    /* ── Background image layer ── */
+    .research-card .card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 1;
+      transition: opacity 0.35s ease;
+      z-index: 0;
+    }
+
+    .research-card.card-stellar .card-bg {
+      background-image: url('Dynamics.jpg');
+    }
+    .research-card.card-omegacen .card-bg {
+      background-image: url('omega_cen.jpg');
+    }
+    .research-card.card-ml .card-bg {
+      background-image: url('collAIder.png');
+    }
+
+    /* Thin black film over the image for text contrast */
+    .research-card .card-tint {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.42);
+      z-index: 1;
+      transition: background 0.3s;
+    }
+    .research-card:hover .card-tint {
+      background: rgba(0, 0, 0, 0.28);
+    }
+
+    /* Top accent bar */
+    .research-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--forest));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s ease;
+      z-index: 3;
+    }
+    .research-card:hover { box-shadow: 0 8px 32px rgba(62,42,92,0.14); transform: translateY(-3px); }  /* green: 45,80,22 */
+    .research-card:hover::before { transform: scaleX(1); }
+
+    /* Card inner content sits above overlays */
+    .card-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      padding: 2.2rem;
+      flex: 1;
+    }
+
+    .card-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 5.rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .card-icon {
+      width: 48px; height: 48px;
+      background: var(--white);
+      border: 1px solid var(--forest-border);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card-icon svg {
+      width: 24px; height: 24px;
+      stroke: var(--forest); fill: none; stroke-width: 1.5;
+    }
+
+    .research-card h2 {
+      font-family: 'Times New Roman', serif;
+      font-size: 1.9rem; font-weight: 400; color: var(--white);
+      line-height: 1.2;
+      text-align: center;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .research-card p {
+      font-size: 1.05rem; line-height: 1.82;
+      color: var(--text-soft); font-weight: 300;
+    }
+
+    .card-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9); margin-top: auto;
+    }
+    .card-link svg {
+      width: 14px; height: 14px;
+      stroke: currentColor; fill: none; stroke-width: 2;
+      transition: transform 0.2s;
+    }
+    .research-card:hover .card-link svg { transform: translateX(3px); }
+
+    .keywords { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .kw {
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 0.2rem 0.55rem; border-radius: 3px;
+      background: var(--white); color: var(--text-muted);
+      border: 1px solid var(--forest-border);
+    }
+
+    @media (max-width: 900px) {
+      .research-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .research-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">EGP</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown">
+      <a href="research.html" class="active">Research</a>
+      <div class="dropdown-menu">
+        <a href="research-stellar.html">Stellar Dynamics</a>
+        <a href="research-mbh.html">Massive Black Holes</a>
+        <a href="research-ml.html">Machine Learning</a>
+      </div>
+    </li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="outreach.html">Outreach</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-header">
+    <h1>Research</h1>
+  </div>
+
+  <div class="page-body">
+
+
+    <div class="research-grid">
+
+      <!-- Card 1: Stellar Dynamics -->
+      <a class="research-card card-stellar" href="research-stellar.html">
+        <div class="card-bg"></div>
+        <div class="card-tint"></div>
+        <div class="card-inner">
+          <h2>Stellar Dynamics</h2>
+          <span class="card-link">
+            Read more
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 2: Massive Black Holes -->
+      <a class="research-card card-omegacen" href="research-mbh.html">
+        <div class="card-bg"></div>
+        <div class="card-tint"></div>
+        <div class="card-inner">
+          <h2>Massive Black Holes</h2> 
+          <span class="card-link">
+            Read more
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 3: Machine Learning -->
+      <a class="research-card card-ml" href="research-ml.html">
+        <div class="card-bg"></div>
+        <div class="card-tint"></div>
+        <div class="card-inner">
+          <h2>Machine Learning</h2>
+          <span class="card-link">
+            Read more
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

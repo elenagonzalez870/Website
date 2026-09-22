@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elena González Prieto</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body { background: var(--navy-deep); }
+
+    /* Nav underline in the EGP green */
+    nav { border-bottom-color: var(--forest); }
+
+    /* ── Full-screen starfield hero ── */
+    .hero {
+      position: relative;
+      margin-top: 62px;
+      height: calc(100vh - 62px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('MBH.jpg') center 40% / cover no-repeat;
+      z-index: 0;
+    }
+    /* vignette: darkens the edges so the centered text stays legible */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center,
+        rgba(14, 22, 38, 0.30) 0%,
+        rgba(14, 22, 38, 0.55) 60%,
+        rgba(14, 22, 38, 0.80) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.1rem;
+      padding: clamp(2rem, 4vw, 3rem);
+      max-width: 920px;
+      /* see-through black panel for readability (no blur) */
+      background: rgba(8, 12, 22, 0.66);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 16px;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Circular photo with a quiet ring ── */
+    .photo-frame {
+      width: clamp(170px, 24vh, 260px);
+      height: clamp(170px, 24vh, 260px);
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+      flex-shrink: 0;
+    }
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+
+    /* ── Name and titles ── */
+    .hero-name h1 {
+      font-family: 'Times New Roman', serif;
+      font-size: clamp(2rem, 4.2vh, 2.9rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .hero-name .subtitle {
+      font-family: 'Times New Roman', serif;
+      font-size: clamp(1.05rem, 1.9vh, 1.25rem);
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: 0.2rem;
+    }
+    .hero-name .affil {
+      font-family: 'Times New Roman', serif;
+      font-size: clamp(0.95rem, 1.7vh, 1.15rem);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* thin rule between identity and bio */
+    .hero-rule {
+      width: 56px; height: 1px;
+      background: rgba(255, 255, 255, 0.45);
+      border: none;
+      margin: 0.4rem 0;
+    }
+
+    /* ── Short bio ── */
+    .hero-bio p {
+      font-family: 'Times New Roman', serif;
+      font-size: clamp(1.15rem, 2vh, 1.4rem);
+      line-height: 1.85;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 72ch;
+      margin-bottom: 0.7rem;
+    }
+    .hero-bio p:last-child { margin-bottom: 0; }
+
+    /* ── Quick links: two outlined boxes ── */
+    .quick-links {
+      display: flex;
+      flex-direction: row;
+      gap: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .ql-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+      padding: 0.7rem 1.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      font-family: 'Times New Roman', serif;
+      font-size: 1.02rem; font-weight: 400; letter-spacing: 0.06em;
+      text-decoration: none; cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease,
+                  border-color 0.25s ease, transform 0.25s ease;
+    }
+    .ql-btn svg {
+      width: 14px; height: 14px;
+      stroke: currentColor; fill: none; stroke-width: 1.8;
+      flex-shrink: 0;
+    }
+    .ql-btn:hover {
+      background: #ffffff;
+      border-color: #ffffff;
+      color: var(--forest);
+      transform: translateY(-2px);
+    }
+
+    /* ── Image credit ── */
+    .bg-credit {
+      position: absolute;
+      bottom: 10px; right: 14px;
+      z-index: 2;
+      font-family: 'Times New Roman', serif;
+      font-size: 0.72rem;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.55);
+      pointer-events: none;
+    }
+
+    @media (max-width: 600px) {
+      .quick-links { flex-direction: column; width: 100%; max-width: 240px; }
+      .hero-bio p { font-size: 1.08rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">EGP</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li class="nav-dropdown">
+      <a href="research.html">Research</a>
+      <div class="dropdown-menu">
+        <a href="research-stellar.html">Stellar Dynamics</a>
+        <a href="research-mbh.html">Massive Black Holes</a>
+        <a href="research-ml.html">Machine Learning</a>
+      </div>
+    </li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="outreach.html">Outreach</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+
+  <div class="hero-content">
+    <div class="photo-frame">
+      <img src="EGP.jpg" alt="Elena González Prieto"/>
+    </div>
+
+    <div class="hero-name">
+      <h1>Elena González Prieto</h1>
+      <p class="subtitle">NSF Graduate Research Fellow</p>
+      <p class="subtitle">Presidential Fellow</p>
+      <p class="affil">Northwestern University &amp; CIERA</p>
+    </div>
+
+    <hr class="hero-rule"/>
+
+    <div class="hero-bio">
+      <p>
+        I am an Astronomy PhD candidate at Northwestern University, advised by
+        Prof. Fred Rasio at the Center for Interdisciplinary Exploration and
+        Research in Astrophysics (CIERA).
+      </p>
+      <p>
+        My research focuses on the dynamical evolution of dense stellar
+        environments, such as globular and nuclear star clusters, with an
+        emphasis on the formation and growth of intermediate-mass black holes.
+        I develop Monte Carlo N-body simulations and incorporate machine
+        learning methods to predict stellar collision outcomes across a wide
+        dynamical range.
+      </p>
+    </div>
+
+    <div class="quick-links">
+      <a class="ql-btn" href="/cdn-cgi/l/email-protection#1f7a737a717e316f6d767a6b705f71706d6b77687a6c6b7a6d71317a7b6a">
+        <svg viewBox="0 0 24 24">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m2 7 10 7 10-7"/>
+        </svg>
+        Email
+      </a>
+      <a class="ql-btn" href="publications.html">
+        <svg viewBox="0 0 24 24">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+        Publications
+      </a>
+    </div>
+  </div>
+
+  <p class="bg-credit">
+     Credit: NASA/ESA and G. Bacon (STScI).
+  </p>
+</section>
+
+</body>
+</html>

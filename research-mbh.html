@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Massive Black Holes · Elena González Prieto</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .page-header h1  { font-size: 3.4rem; }
+
+    .sibling-nav { display: flex; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
+    .sibling-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      border: 1px solid var(--forest-border); border-radius: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--forest); text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .sibling-btn:hover { background: var(--forest-pale); box-shadow: 0 0 10px var(--forest-glow); }
+    .sibling-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    .topic-section { margin-bottom: 2.8rem; }
+    .topic-section h2 {
+      font-family: 'Times New Roman', serif;
+      font-size: 1.9rem; font-weight: 400; color: var(--forest);
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--forest-border);
+    }
+    .topic-section p {
+      font-size: 1.22rem; line-height: 1.9;
+      color: var(--text-soft); font-weight: 300; margin-bottom: 1rem;
+    }
+    .topic-section p:last-child { margin-bottom: 0; }
+    .paper-ref {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-top: 0.85rem;
+    }
+    .paper-ref a { color: var(--forest); text-decoration: none; }
+    .paper-ref a:hover { text-decoration: underline; }
+    .topic-section a {
+      color: var(--forest);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .topic-section a:hover { color: var(--navy); }
+
+    .topic-with-fig {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem;
+      align-items: start;
+      margin-bottom: 2.8rem;
+    }
+    .topic-with-fig .topic-section { margin-bottom: 0; }
+    /* text above, figure below (full width) */
+    .topic-with-fig.stack {
+      grid-template-columns: 1fr;
+    }
+    .topic-with-fig.stack .topic-fig {
+      position: static;
+      max-width: 560px;
+      margin-top: 0.5rem;
+    }
+    /* sections without a figure span the full page width */
+    .topic-with-fig:not(:has(.topic-fig)) { grid-template-columns: 1fr; }
+    .topic-fig { margin: 0; position: sticky; top: 80px; }
+    .topic-fig img {
+      width: 100%; height: auto; display: block;
+      border: 1px solid var(--forest-border);
+      border-radius: 4px; background: var(--white);
+    }
+    /* circular crop for the ω Cen photo */
+    .topic-fig.circular {
+      position: sticky; top: 80px;
+      justify-self: center;
+      width: min(100%, 340px);
+      text-align: center;
+    }
+    .topic-fig.circular img {
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--forest);
+    }
+    .topic-fig.circular figcaption {
+      text-align: center;
+      max-width: 280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .topic-fig.compact {
+      max-width: 300px;
+      justify-self: center;
+    }
+    .topic-fig.placeholder {
+      aspect-ratio: 4 / 3;
+      border: 1px dashed var(--forest-border);
+      border-radius: 4px;
+      background: var(--forest-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Times New Roman', serif;
+      font-style: italic; font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .topic-fig figcaption {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-top: 0.55rem; line-height: 1.5;
+    }
+    .topic-fig a { color: var(--forest-light); text-decoration: none; }
+    .topic-fig a:hover { text-decoration: underline; }
+
+    @media (max-width: 820px) {
+      .topic-with-fig { grid-template-columns: 1fr; gap: 1.25rem; }
+      .topic-fig { position: static; max-width: 420px; margin: 0 auto; }
+      .topic-fig.circular { max-width: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">EGP</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown">
+      <a href="research.html" class="active">Research</a>
+      <div class="dropdown-menu">
+        <a href="research-stellar.html">Stellar Dynamics</a>
+        <a href="research-mbh.html" class="active">Massive Black Holes</a>
+        <a href="research-ml.html">Machine Learning</a>
+      </div>
+    </li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="outreach.html">Outreach</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-header">
+    <h1>Massive Black Holes</h1>
+  </div>
+
+  <div class="page-body">
+
+    <div class="topic-with-fig">
+      <div class="topic-section">
+        <h2>Omega Centauri</h2>
+        <p>
+          Omega Centauri is the most massive globular cluster in the Milky Way, and
+          likely the stripped nucleus of a dwarf galaxy. Exciting recent observations
+          of fast-moving stars in the core give strong evidence for a central intermediate-mass black hole.
+        </p>
+      </div>
+      <div class="topic-fig circular">
+        <img src="research/omega_cen.jpg" alt="Omega Centauri"/>
+        <figcaption>Credit: ESA/Hubble &amp; NASA, M. Häberle (MPIA)</figcaption>
+      </div>
+    </div>
+
+    <div class="topic-with-fig">
+      <div class="topic-section">
+        <h2>Growing an IMBH over a Hubble Time</h2>
+        <p>
+          In
+          <a href="https://doi.org/10.3847/2041-8213/adfd4a" target="_blank">González Prieto et al. (2025)</a>
+          we modeled ω&nbsp;Cen with CMC, including a detailed treatment of loss-cone
+          dynamics for stars, binaries, and compact objects. We start with black hole
+          seeds of 500–5000&nbsp;M<sub>⊙</sub> — masses consistent with runaway collisions
+          of massive stars — and evolve the clusters for 12&nbsp;Gyr.
+        </p>
+        <p>
+          By the present day the seeds grow to IMBHs of ∼50,000&nbsp;M<sub>⊙</sub>, while
+          the models reproduce ω&nbsp;Cen’s observed surface brightness and velocity
+          dispersion profiles. Most of the growth comes from mergers with
+          ∼30–40&nbsp;M<sub>⊙</sub> black holes.
+        </p>
+        <div class="topic-fig" style="position:static; margin-top:1.25rem;">
+          <img src="research/profiles.png" alt="Profiles of ω Centauri"/>
+        </div>
+      </div>
+      <div class="topic-fig compact">
+        <img src="research/BH_growth_class.png" alt="BH growth class"/>
+      </div>
+    </div>
+
+    <div class="topic-with-fig stack">
+      <div class="topic-section">
+        <h2>Fast Stars, Mergers, and Tidal Disruptions</h2>
+        <p>
+          The same models predict a population of fast-moving stars similar to those
+          observed in the core of ω&nbsp;Cen.           The plot below shows the distribution of 
+          fast-moving stars for one of our models as black circles, with those shown in 
+          blue indicating stars with 13.9 &lt; F625W &lt; 24, consistent with the observed stellar population
+          reported in <a href="https://www.nature.com/articles/s41586-024-07511-z" target="_blank">Häberle et al. (2024)</a> and shown 
+          as purple stars. The empty circles indicate stars that are remnants of a binary
+          disruption. The shaded gray region shows the 1″ uncertainty in the cluster
+          center.
+        </p>
+        <p>
+          For ω&nbsp;Cen–like clusters today, we estimate an IMBH–BH merger rate of
+          ∼(4–8)&nbsp;×&nbsp;10<sup>−8</sup>&nbsp;yr<sup>−1</sup>, and a comparable tidal
+          disruption rate of ∼5&nbsp;×&nbsp;10<sup>−8</sup>&nbsp;yr<sup>−1</sup>. Depending on how
+          common such clusters are, the predicted TDE rate may account for anywhere
+          from ∼0.1% to ∼10% of the observed rate!
+        </p>
+      </div>
+      <div class="topic-fig">
+        <img src="research/fast_stars.png" alt="Fast stars in ω Centauri"/>
+        <figcaption>Distribution of fast-moving stars in ω Centauri.</figcaption>
+      </div>
+    </div>
+
+    <div class="sibling-nav">
+      <a class="sibling-btn" href="research-stellar.html">
+        <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Stellar Dynamics
+      </a>
+      <a class="sibling-btn" href="research.html">
+        Research Overview
+      </a>
+      <a class="sibling-btn" href="research-ml.html">
+        Machine Learning
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

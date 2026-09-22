@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Outreach · Elena González Prieto</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .outreach-intro {
+      max-width: none;   /* full page width */
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+    }
+    .outreach-cta { color: var(--forest); font-style: italic; }
+
+    /* rows: large boxes with a light purple background */
+    .outreach-row {
+      grid-template-columns: 1.6fr 1fr;
+      gap: 2rem 3.5rem;
+      margin-bottom: 2.5rem;
+      background: var(--forest-pale);
+      border: 1px solid rgba(62, 42, 92, 0.18);
+      border-radius: 16px;
+      padding: clamp(1.75rem, 3vw, 2.75rem);
+    }
+    .outreach-row.flip { grid-template-columns: 1fr 1.6fr; }
+    /* keep all text left-aligned; alternating alignment reads jumpy */
+    .outreach-row.flip .outreach-text { text-align: left; }
+
+    .outreach-text h2 { font-size: 1.7rem; }
+    /* thin green rule under each section header, echoing the home page */
+    .outreach-text h2::after {
+      content: '';
+      display: block;
+      width: 44px; height: 1px;
+      background: var(--forest);
+      margin-top: 0.6rem;
+    }
+    .outreach-text p { font-size: 1.2rem; line-height: 1.85; }
+
+    /* photos framed like the rest of the site: rounded, green edge, soft lift */
+    .outreach-photo {
+      border-radius: 12px;
+      border: 1px solid var(--forest);
+      box-shadow: 0 6px 24px rgba(62, 42, 92, 0.10);  /* green: 45, 80, 22 */
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">EGP</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown">
+      <a href="research.html">Research</a>
+      <div class="dropdown-menu">
+        <a href="research-stellar.html">Stellar Dynamics</a>
+        <a href="research-mbh.html">Massive Black Holes</a>
+        <a href="research-ml.html">Machine Learning</a>
+      </div>
+    </li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="cv.html">CV</a></li>
+    <li><a href="outreach.html" class="active">Outreach</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-header">
+    <h1>Outreach & Leadership</h1>
+  </div>
+
+  <div class="page-body outreach-body">
+    <p class="outreach-intro">
+      The mentors I have gained throughout the years have been crucial to my growth as a researcher and have inspired me to hold equal
+      importance in my scientific and mentorship contributions. Because of this, throughout my graduate career, I have mentored students across
+      career stages, from high school to graduate students. I am also very passionate about making astronomy more accessible to the Spanish-speaking community,
+      so you'll find some examples of my outreach work below.
+      <br><br>
+      <span class="outreach-cta">If you would like to work together on an outreach project, please reach out!</span>
+    </p>
+
+    
+    <!-- Row 1: text left, photo right — drop photo at outreach/mentoring.jpg -->
+    <article class="outreach-row">
+      <div class="outreach-text">
+        <h2>REACH, LAMAT, and REU Programs </h2>
+        <p>
+
+          CIERA has amazing summer research programs both at the high school (REACH) and undergraduate (REU) levels. 
+          In my first summer as a graduate student, I co-mentored Isabella, a bright high school student from Chicago. I designed a three-week research project with her, 
+          which culminated in a scientific presentation. The following year, I became the mentor coordinator for REACH, where I guided graduate students in designing effective projects 
+          and mentoring relationships. This was incredibly rewarding, as not only did I get to closely follow the progress of all of the REACH students, but I also learned a lot 
+          about different mentoring styles. I wanted to make an impact on students with similar backgrounds to me, so I later became a mentor for the LAMAT program at UC Santa Cruz, 
+          where I co-mentored a talented undergraduate student.
+        </p>
+      </div>
+      <figure class="outreach-photo">
+        <img src="outreach/mentoring.jpeg" alt="Mentoring students"
+             onerror="this.closest('.outreach-photo').classList.add('empty')"/>
+      </figure>
+    </article>
+
+    <!-- Row 0: photo left, text right — drop photo at outreach/gwip.jpg -->
+    <article class="outreach-row flip">
+      <div class="outreach-text">
+        <h2>Graduate Womxn in Physics</h2>
+        <p>
+          In my years at Northwestern, I have also been very involved in the Graduate Womxn in Physics (GWiP) community. I first chaired the Advocacy Committee,
+          which liaises between the graduate students and the department to ensure that the needs of gender minorities are being met. Based on what I learned about the needs of the
+          community, I created and chaired the GWiP Mentorship Committee, which connects gender minority graduate students with mentors in the GWiP network. 
+        </p>
+      </div>
+      <figure class="outreach-photo">
+        <img src="outreach/gwip.jpg" alt="Graduate Womxn in Physics"
+             onerror="this.closest('.outreach-photo').classList.add('empty')"/>
+      </figure>
+    </article>
+
+
+    <!-- Row 2: photo left, text right — drop photo at outreach/dearborn.jpg -->
+    <article class="outreach-row ">
+      <div class="outreach-text">
+        <h2>Spanish Astronomy Brochures</h2>
+        <p>
+          I translated Dearborn Observatory's brochure series into Spanish,
+          so visitors from Chicago's Hispanic community can explore the night sky and careers in astronomy
+          without a language barrier.
+
+          <!-- https://ciera.northwestern.edu/programs/pathfinder-brochures/ -->
+        </p>
+      </div>
+      <figure class="outreach-photo">
+        <img src="outreach/dearborn.jpg" alt="Dearborn Observatory"
+             onerror="this.closest('.outreach-photo').classList.add('empty')"/>
+      </figure>
+    </article>
+
+
+    <!-- Row 3: text left, photo right — drop photo at outreach/events.jpg -->
+    <article class="outreach-row flip">
+      <div class="outreach-text">
+        <h2>CIERA Connections Committee</h2>
+        <p>
+          I co-organized a speaker series that exposes junior researchers to diverse career opportunities outside academia.
+        </p>
+      </div>
+      <figure class="outreach-photo">
+        <img src="outreach/CIERA Connections.jpeg" alt="Outreach events"
+             onerror="this.closest('.outreach-photo').classList.add('empty')"/>
+      </figure>
+    </article>
+
+    
+
+  </div>
+</div>
+
+</body>
+</html>
