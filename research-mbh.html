@@ -65,6 +65,8 @@
       position: static;
       max-width: 560px;
       margin-top: 0.5rem;
+      margin-left: auto;
+      margin-right: auto;
     }
     /* sections without a figure span the full page width */
     .topic-with-fig:not(:has(.topic-fig)) { grid-template-columns: 1fr; }
@@ -171,29 +173,35 @@
         <p>
           In
           <a href="https://doi.org/10.3847/2041-8213/adfd4a" target="_blank">González Prieto et al. (2025)</a>
-          we modeled ω&nbsp;Cen with CMC, including a detailed treatment of loss-cone
-          dynamics for stars, binaries, and compact objects. We start with black hole
+          we modeled ω&nbsp;Cen with the Cluster Monte Carlo (CMC) code, including a detailed treatment of loss-cone
+          dynamics for stars, binaries, and compact objects. We started with black hole
           seeds of 500–5000&nbsp;M<sub>⊙</sub> — masses consistent with runaway collisions
-          of massive stars — and evolve the clusters for 12&nbsp;Gyr.
+          of massive stars — and evolved the clusters for 12&nbsp;Gyr.
         </p>
         <p>
-          By the present day the seeds grow to IMBHs of ∼50,000&nbsp;M<sub>⊙</sub>, while
-          the models reproduce ω&nbsp;Cen’s observed surface brightness and velocity
-          dispersion profiles. Most of the growth comes from mergers with
-          ∼30–40&nbsp;M<sub>⊙</sub> black holes.
+          By the present day, the seeds grow to IMBHs of ∼50,000&nbsp;M<sub>⊙</sub>. Most of the growth comes from mergers with
+          ∼30–40&nbsp;M<sub>⊙</sub> black holes, as shown in the figure on the right. Crucially, the models 
+          successfully reproduce ω&nbsp;Cen’s observed surface brightness and velocity
+          dispersion profiles, shown in the figure below. 
         </p>
         <div class="topic-fig" style="position:static; margin-top:1.25rem;">
           <img src="research/profiles.png" alt="Profiles of ω Centauri"/>
+          <figcaption>
+            Left: V-band surface brightness profile of ω&nbsp;Cen at 12&nbsp;Gyr compared with observations from Trager et&nbsp;al. (1995) and van der Marel &amp; Anderson (2010). Right: proper-motion velocity dispersion profile compared with Häberle et&nbsp;al. (2025). Red and blue curves show models with initial BH seeds of 500 and 5000&nbsp;M<sub>⊙</sub>, respectively.
+          </figcaption>
         </div>
       </div>
       <div class="topic-fig compact">
         <img src="research/BH_growth_class.png" alt="BH growth class"/>
+        <figcaption>
+          Top: growth of the central BH mass over time for seeds of 500&nbsp;M<sub>⊙</sub> (red) and 5000&nbsp;M<sub>⊙</sub> (blue). Bottom: cumulative mass accreted via inspirals (solid) and tidal disruption events (dashed).
+        </figcaption>
       </div>
     </div>
 
     <div class="topic-with-fig stack">
       <div class="topic-section">
-        <h2>Fast Stars, Mergers, and Tidal Disruptions</h2>
+        <h2>Fast Stars, Inspirals, and Tidal Disruptions</h2>
         <p>
           The same models predict a population of fast-moving stars similar to those
           observed in the core of ω&nbsp;Cen.           The plot below shows the distribution of 

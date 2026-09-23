@@ -65,6 +65,8 @@
       position: static;
       max-width: 900px;
       margin-top: 0.5rem;
+      margin-left: auto;
+      margin-right: auto;
     }
     /* sections without a figure span the full page width */
     .topic-with-fig:not(:has(.topic-fig)) { grid-template-columns: 1fr; }
@@ -174,19 +176,17 @@
         </div>
         <p>
           Stellar collisions are common in dense clusters and galactic nuclei, and they
-          matter for everything from blue stragglers to the seeds of massive black
-          holes. Analytic fitting formulae exist, but they do not generalize well
+          matter for everything from blue stragglers to the formation of massive black
+          holes. Analytic fitting formulae that describe the likely outcome of a collision exist, but they do not generalize well
           across encounter energies or stellar evolutionary phases.
         </p>
         <p>
           Smoothed particle hydrodynamics (SPH) can resolve the internal structure of
           colliding stars, yet even modest-resolution runs are too expensive to call
-          on the fly inside an <em>N</em>-body calculation that may produce thousands
-          of collisions. What we need is a fast surrogate that recovers SPH-quality
-          outcomes. The trained models are released as <strong>collAIder</strong>, an
-          open-source Python package for rapid prediction of stellar collision outcomes.
+          on the fly inside an <em>N</em>-body calculation that may produce thousands of collisions. To solve this, we built collAIder, an open-source Python package
+          that contains a machine learning model trained on a large set of SPH simulations of stellar collisions to predict the outcome of a stellar collision.
         </p>
-        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center;">
           <a class="software-chip" href="https://github.com/elenagonzalez870/collAIder" target="_blank">
             <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
             GitHub
@@ -199,9 +199,8 @@
       </div>
     </div>
 
-    <div class="topic-with-fig">
+    <div class="topic-with-fig stack">
       <div class="topic-section">
-        <h2>Smoothed particle hydrodynamics simulations of stellar collisions</h2>
         <p>
           In
           <a href="https://doi.org/10.3847/1538-4357/ae6585" target="_blank">González Prieto et&nbsp;al. (2026)</a>
@@ -211,17 +210,6 @@
           stellar structures drawn from MESA evolutionary models.
         </p>
         <p>
-          Each calculation records whether the encounter ends in a merger, disruption,
-          or flyby, together with the masses of any surviving remnants. That data set
-          is the training and validation basis for the models below.
-        </p>
-      </div>
-    </div>
-
-    <div class="topic-with-fig stack">
-      <div class="topic-section">
-        <h2>Classification and Remnant Masses</h2>
-        <p>
           We trained and compared nearest neighbors, support vector machines, and
           neural networks on two tasks: classifying the collision outcome, and
           regressing the final remnant masses. Neural networks reach a classification
@@ -229,39 +217,28 @@
           two remnant masses. In the figure below, we show the performance of each method on the classification task
           in a confusion matrix.
         </p>
-        <p>
-          All three model families outperform the analytic prescriptions commonly used
-          in cluster codes, while evaluating in microseconds per encounter — many
-          orders of magnitude faster than a direct SPH integration.
-        </p>
-      </div>
-      <div class="topic-fig">
-        <img src="research/confusion_matrices_panel.png" alt="Confusion matrices for collision classification"/>
-        <figcaption>
-          From left to right, confusion matrices for the test data using k-nearest neighbors (k-NN), support vector classifier (SVC), and neural network (NN). 
-          The accuracy and total number of samples in each class are shown. Labels (0,1,2) indicate the number of surviving stars, and label 3 
-          corresponds to a stellar collision where one star gets destroyed and the other stripped. 
-        </figcaption>
-      </div>
-    </div>
-
-    <div class="topic-with-fig stack">
-      <div class="topic-section">
-        <h2>Mixture of Experts Model</h2>
+        <div class="topic-fig" style="position:static; margin:1rem auto 1.5rem; max-width:900px;">
+          <img src="research/confusion_matrices_panel.png" alt="Confusion matrices for collision classification"/>
+          <figcaption>
+            From left to right, confusion matrices for the test data using k-nearest neighbors (k-NN), support vector classifier (SVC), and neural network (NN).
+            The accuracy and total number of samples in each class are shown. Labels (0,1,2) indicate the number of surviving stars, and label 3
+            corresponds to a stellar collision where one star gets destroyed and the other stripped.
+          </figcaption>
+        </div>
         <p>
           We also explore a combined architecture using a Mixture of Experts model,
-          which achieves a comparable classification balanced accuracy of 98.4%,
+          which achieves a comparable classification balanced accuracy of 98.5%,
           with relative errors of 0.27% and 0.75% for the two remnant masses.
         </p>
-      </div>
-      <div class="topic-fig">
-        <img src="research/violin_moe_comparison.png" alt="Mixture of Experts error comparison"/>
-        <figcaption>
-          Distributions of absolute errors in the final predicted masses using the neural network (NN) and the Mixture of Experts (MoE) model.
-          Each panel shows the distribution of absolute errors for the final masses of star 1 on the left and star 2 on the right of the violin plot, 
-          for data with a specific ground-truth classification label. Small errors are rounded to 10<sup>−10</sup>. Labels (0,1,2) indicate the number of surviving stars, and label 3 
-          corresponds to a stellar collision where one star gets destroyed and the other stripped. 
-        </figcaption>
+        <div class="topic-fig" style="position:static; margin:1rem auto 0; max-width:900px;">
+          <img src="research/violin_moe_comparison.png" alt="Mixture of Experts error comparison"/>
+          <figcaption>
+            Distributions of absolute errors in the final predicted masses using the neural network (NN) and the Mixture of Experts (MoE) model.
+            Each panel shows the distribution of absolute errors for the final masses of star 1 on the left and star 2 on the right of the violin plot,
+            for data with a specific ground-truth classification label. Small errors are rounded to 10<sup>−10</sup>. Labels (0,1,2) indicate the number of surviving stars, and label 3
+            corresponds to a stellar collision where one star gets destroyed and the other stripped.
+          </figcaption>
+        </div>
       </div>
     </div>
 

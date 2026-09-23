@@ -83,6 +83,10 @@
     }
     .topic-fig a { color: var(--forest-light); text-decoration: none; }
     .topic-fig a:hover { text-decoration: underline; }
+    .topic-fig.compact {
+      max-width: 260px;
+      justify-self: center;
+    }
 
     @media (max-width: 820px) {
       .topic-with-fig { grid-template-columns: 1fr; gap: 1.25rem; }
@@ -125,7 +129,7 @@
           nuclear star clusters, are natural laboratories for stellar collisions, tidal
           disruption events, and mergers between compact objects. In these environments,
           dynamical encounters can result in exotic populations including X-ray binaries, 
-          radio pulsars, and black holes that would not form in isolated single-star evolution.
+          radio pulsars, and massive black holes that would not form in isolated single-star evolution.
 
         </p>
         <p>
@@ -138,7 +142,7 @@
 
     <div class="topic-with-fig">
       <div class="topic-section">
-        <h2>IMBH Formation via Massive Binaries</h2>
+        <h2>Runaway IMBH Formation</h2>
         <p>
           Isolated single-star evolution predicts an “upper mass gap” in the black
           hole spectrum from roughly 40 to 120&nbsp;M<sub>⊙</sub>, set by (pulsational)
@@ -152,11 +156,11 @@
           we explored the role of the primordial binary fraction of massive stars in this 
           formation pathway. We found that for clusters with parameters typical of Milky Way globular clusters and binary fractions 
           consistent with field massive stars, massive binaries drive binary-mediated encounters, leading to the formation 
-          of intermediate-mass black holes (≳120&nbsp;M<sub>⊙</sub>). 
+          of intermediate-mass black holes (≳120&nbsp;M<sub>⊙</sub>, IMBHs). 
           The figure on the right shows a typical collision tree leading to an IMBH.
         </p>
       </div>
-      <figure class="topic-fig">
+      <figure class="topic-fig compact">
         <img src="research/Dyn_tree.png" alt="Collision tree leading to IMBH formation"/>
         <figcaption>Example collision tree leading to IMBH formation.</figcaption>
       </figure>
@@ -176,7 +180,7 @@
         <p>
           In our models, all IMBHs were ejected within the first ∼500&nbsp;Myr, either by
           gravitational-wave recoil after a black hole merger or by dynamical kicks
-          from few-body scatterings. Some of the IMBHs were ejected in a binary with a BH, 
+          from few-body scatterings. Some of the IMBHs were ejected in a binary with another black hole, 
           with short enough inspiral timescales that they might become LIGO sources.
           The figure on the right shows the mass of the IMBH and the mass ratio with its companion, 
           colored by the inspiral timescale. Binaries above the dashed black line are IMBH pairs, while 

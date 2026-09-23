@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CV · Elena González Prieto</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; height: 100%;
+      background: #525659;
+      font-family: 'Times New Roman', serif;
+    }
+    .bar {
+      position: sticky; top: 0; z-index: 2;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap;
+      padding: 0.65rem 1.25rem;
+      background: #2d2d2d; color: #fff;
+    }
+    .bar a {
+      color: #fff; text-decoration: none;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+    .bar a:hover { background: rgba(255,255,255,0.12); }
+    .bar a.primary {
+      background: #3E2A5C; border-color: #3E2A5C;
+    }
+    #viewer {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1rem; padding: 1.25rem;
+    }
+    #viewer canvas {
+      max-width: 100%;
+      height: auto;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+      background: #fff;
+    }
+    .status {
+      color: #ddd; text-align: center; padding: 3rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <a href="cv.html">← Back</a>
+    <span>Elena González Prieto — CV</span>
+    <a class="primary" href="cv.pdf" download="Elena_Gonzalez_Prieto_CV.pdf">Download PDF</a>
+  </div>
+  <div id="viewer"><p class="status">Loading CV…</p></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    const container = document.getElementById('viewer');
+
+    pdfjsLib.getDocument('cv.pdf').promise.then(async function (pdf) {
+      container.innerHTML = '';
+      for (let n = 1; n <= pdf.numPages; n++) {
+        const page = await pdf.getPage(n);
+        const unscaled = page.getViewport({ scale: 1 });
+        const scale = Math.min(1.4, (window.innerWidth - 48) / unscaled.width);
+        const viewport = page.getViewport({ scale: Math.max(scale, 0.8) });
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        container.appendChild(canvas);
+        await page.render({ canvasContext: ctx, viewport }).promise;
+      }
+    }).catch(function (err) {
+      container.innerHTML =
+        '<p class="status">Could not load the CV. ' +
+        '<a href="cv.pdf" style="color:#fff">Open the PDF file directly</a>.</p>';
+      console.error(err);
+    });
+  </script>
+</body>
+</html>
