@@ -7,7 +7,7 @@
   <style>
     * { box-sizing: border-box; }
     html, body {
-      margin: 0; height: 100%;
+      margin: 0; min-height: 100%;
       background: #525659;
       font-family: 'Times New Roman', serif;
     }
@@ -31,18 +31,22 @@
     }
     #viewer {
       display: flex; flex-direction: column; align-items: center;
-      gap: 1rem; padding: 1.25rem;
+      gap: 1.25rem; padding: 1.5rem 1rem 3rem;
     }
-    #viewer canvas {
-      max-width: 100%;
+    #viewer canvas,
+    #viewer img {
+      width: min(1100px, 100%);
       height: auto;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
       background: #fff;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
     }
-    .status {
-      color: #ddd; text-align: center; padding: 3rem 1rem;
+    #status {
+      color: #ddd;
+      text-align: center;
+      padding: 2rem 1rem;
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
   <div class="bar">
@@ -50,35 +54,66 @@
     <span>Elena González Prieto — CV</span>
     <a class="primary" href="cv.pdf" download="Elena_Gonzalez_Prieto_CV.pdf">Download PDF</a>
   </div>
-  <div id="viewer"><p class="status">Loading CV…</p></div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <div id="status">Loading CV…</div>
+  <div id="viewer"></div>
   <script>
-    pdfjsLib.GlobalWorkerOptions.workerSrc =
-      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    (function () {
+      var statusEl = document.getElementById('status');
+      var viewer = document.getElementById('viewer');
+      var PAGE_WIDTH = Math.min(1100, window.innerWidth - 32);
 
-    const container = document.getElementById('viewer');
-
-    pdfjsLib.getDocument('cv.pdf').promise.then(async function (pdf) {
-      container.innerHTML = '';
-      for (let n = 1; n <= pdf.numPages; n++) {
-        const page = await pdf.getPage(n);
-        const unscaled = page.getViewport({ scale: 1 });
-        const scale = Math.min(1.4, (window.innerWidth - 48) / unscaled.width);
-        const viewport = page.getViewport({ scale: Math.max(scale, 0.8) });
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-        container.appendChild(canvas);
-        await page.render({ canvasContext: ctx, viewport }).promise;
+      function showImages() {
+        statusEl.textContent = '';
+        viewer.innerHTML = '';
+        for (var i = 1; i <= 4; i++) {
+          var img = document.createElement('img');
+          img.src = 'cv-pages/page-' + i + '.png?v=3';
+          img.alt = 'CV page ' + i;
+          img.width = 2550;
+          img.height = 3300;
+          viewer.appendChild(img);
+        }
       }
-    }).catch(function (err) {
-      container.innerHTML =
-        '<p class="status">Could not load the CV. ' +
-        '<a href="cv.pdf" style="color:#fff">Open the PDF file directly</a>.</p>';
-      console.error(err);
-    });
+
+      if (!window['pdfjsLib']) {
+        showImages();
+        return;
+      }
+
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+      pdfjsLib.getDocument('cv.pdf').promise.then(function (pdf) {
+        statusEl.textContent = '';
+        var chain = Promise.resolve();
+        for (var n = 1; n <= pdf.numPages; n++) {
+          (function (pageNum) {
+            chain = chain.then(function () {
+              return pdf.getPage(pageNum).then(function (page) {
+                var base = page.getViewport({ scale: 1 });
+                var cssScale = PAGE_WIDTH / base.width;
+                var outputScale = Math.max(2, Math.min(window.devicePixelRatio || 2, 3));
+                var viewport = page.getViewport({ scale: cssScale * outputScale });
+                var canvas = document.createElement('canvas');
+                canvas.width = Math.floor(viewport.width);
+                canvas.height = Math.floor(viewport.height);
+                canvas.style.width = PAGE_WIDTH + 'px';
+                canvas.style.height = Math.floor(base.height * cssScale) + 'px';
+                viewer.appendChild(canvas);
+                return page.render({
+                  canvasContext: canvas.getContext('2d'),
+                  viewport: viewport
+                }).promise;
+              });
+            });
+          })(n);
+        }
+        return chain;
+      }).catch(function (err) {
+        console.error(err);
+        showImages();
+      });
+    })();
   </script>
 </body>
 </html>
